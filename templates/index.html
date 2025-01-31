@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <!-- Form untuk menambahkan tugas -->
+        <form method="POST">
+            <input type="text" name="task" placeholder="Masukkan tugas..." required>
+            <button type="submit">Tambah Tugas</button>
+        </form>
+
+        <!-- Menampilkan daftar tugas -->
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    {{ task }}
+                    <a href="{{ url_for('delete', task_id=loop.index0) }}" class="delete-btn">Hapus</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -20,7 +20,10 @@
         <ul>
             {% for task in tasks %}
                 <li>
-                    {{ task }}
+                    <input type="checkbox" 
+                           {% if task.completed %}checked{% endif %} 
+                           onchange="location.href='{{ url_for('toggle_status', task_id=loop.index0) }}'">
+                    {{ task.name }}
                     <a href="{{ url_for('delete', task_id=loop.index0) }}" class="delete-btn">Hapus</a>
                 </li>
             {% endfor %}
